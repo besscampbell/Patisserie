@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Patisserie.ViewModels
+@model RegisterViewModel
+
+<h2>Pierre's Patisserie New Customer Registration</h2>
+<hr/>
+
+@if(ViewBag.Error != null)
+{
+  <h3>@ViewBag.Error, Please try again.</h3>
+}
+
+
+@using(Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+  <div class="form-group">
+    @Html.LabelFor(user => user.Email)
+    <div>
+      @Html.TextBoxFor(user => user.Email)
+    </div>  
+  </div>
+  <br/>
+  <div class="form-group">
+    @Html.LabelFor(user => user.Password)
+    <div>
+      @Html.PasswordFor(user => user.Password)
+    </div>  
+  </div>
+  <br/>
+  <div class="form-group">
+    @Html.LabelFor(user => user.ConfirmPassword)
+    <div>
+      @Html.PasswordFor(user => user.ConfirmPassword)
+    </div>  
+  </div>
+  <br/>
+  <input type="submit" value="Register" class="btn btn-info">
+}

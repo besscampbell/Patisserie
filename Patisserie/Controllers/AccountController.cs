@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Patisserie.Models;
 using Patisserie.ViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace Patisserie.Controllers
@@ -29,19 +30,28 @@ namespace Patisserie.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> Register(RegisterViewModel mdoel)
+    public async Task<ActionResult> Register(RegisterViewModel model)
     {
-      var user = new ApplicationUser { UserName = mdoel.Email };
-      IdentityResult result = await _userManager.CreateAsync(user, mdoel.Password);
-      if(result.Succeeded)
+      try
       {
-        return RedirectToAction("Index");
+        var user = new ApplicationUser { UserName = model.Email };
+        IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+        if(result.Succeeded)
+        {
+          return RedirectToAction("Index");
+        }
+        else
+        {
+          ViewBag.Error = result;
+          return View();
+        }
       }
-      else
+      catch(Exception result)
       {
-        ViewBag.Error = result.Errors;
+        ViewBag.Error = result.Message;
         return View();
       }
+      
     }
 
     public ActionResult Login()
@@ -59,7 +69,7 @@ namespace Patisserie.Controllers
       }
       else
       {
-        ViewBag.Error = "There was an issue with your log in. Please try again.";
+        ViewBag.Error = result;
         return View();
       }
     }
