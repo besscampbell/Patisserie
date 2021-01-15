@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pierre's Patisserie</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/styles.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-inverse bg-inverse">
+      <div class="container">
+        @Html.ActionLink("Pierre's Patisserie", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav mr-auto">
+              <li class="nav-item">@Html.ActionLink("Treats", "Index", "Treats", null, new { @class = "nav-link" })</li>
+              <li class="nav-item">@Html.ActionLink("Flavors", "Index", "Flavors", null, new { @class = "nav-link" })</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container pt-5"> 
+      @RenderBody()
+    </div>
+  </body>
+</html>
