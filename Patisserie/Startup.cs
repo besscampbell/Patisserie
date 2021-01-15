@@ -25,7 +25,7 @@ namespace Patisserie
     {
       services.AddMvc();
       services.AddEntityFrameworkMySql()
-        .AddDbContext<ToDoListContext>(options => options
+        .AddDbContext<PatisserieContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
       services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<PatisserieContext>()
