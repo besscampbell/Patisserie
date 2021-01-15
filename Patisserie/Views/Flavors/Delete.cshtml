@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Patisserie.Models.Flavor
+
+<h3>Are you sure you want to permanently delete @Model.Type from your flavors?</h3>
+<br/>
+@using(Html.BeginForm())
+{
+  <input type="submit" value="Delete" class="btn btn-danger">
+}
+<br/>
+<h3>@Html.ActionLink($"Return to {Model.Type}'s info page", "Details", new { id = Model.FlavorId})</h3>
