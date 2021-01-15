@@ -10,7 +10,10 @@
     {
       <h4>Add some treats! None listed.</h4>
       <br/>
-      <h4>@Html.ActionLink("+ your first Treat", "Create", "Treats")</h4>
+       @if(User.Identity.IsAuthenticated)
+       {
+        <h4>@Html.ActionLink("+ your first Treat", "Create", "Treats")</h4>
+       }
     }
     else
     {
@@ -21,7 +24,10 @@
         <h4>@Html.ActionLink($"{treat.Type}", "Details", "Treats", new { id = treat.TreatId})</h4>
       }
       <br/>
-      <h4>@Html.ActionLink("+ Treat", "Create", "Treats")</h4>
+      @if(User.Identity.IsAuthenticated)
+      {
+        <h4>@Html.ActionLink("+ Treat", "Create", "Treats")</h4>
+      }
 
     }
   </div>
@@ -30,7 +36,10 @@
       {
         <h4>You have no flavors to add to your treats!</h4>
         <br/>
-        <h4>@Html.ActionLink("+ your first Flavor", "Create", "Flavors")</h4>
+        @if(User.Identity.IsAuthenticated)
+        {
+          <h4>@Html.ActionLink("+ your first Flavor", "Create", "Flavors")</h4>
+        }
       }
       else
       {
@@ -41,8 +50,10 @@
           <h4>@Html.ActionLink($"{flavor.Type}", "Details", "Flavors", new { id = flavor.FlavorId})</h4>
         }
         <br/>
-        <h4>@Html.ActionLink("+ Flavor", "Create", "Flavors")</h4>
-
+        @if(User.Identity.IsAuthenticated)
+        {
+          <h4>@Html.ActionLink("+ Flavor", "Create", "Flavors")</h4>
+        }
       }
   </div>
 </div>

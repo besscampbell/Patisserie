@@ -1,0 +1,55 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Patisserie.Models.Flavor
+
+
+<div class="row">
+  <div class="col-6">
+    <h2>@Html.ActionLink("Flavor:", "Index")<br/>@Model.Type</h2>
+  </div>
+  <div class="col-6">
+    @if(Model.Pastries.Count == 0)
+    {
+      <h2>No Treats are have been made with this Flavor</h2>
+      <br/>
+      @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+      {
+        <h3>@Html.ActionLink("+ first Treat", "AddTreat", new { id = Model.FlavorId })</h3>
+      }
+    }
+    else
+    {
+      <h2>Treats in this flavor:</h2>
+      @foreach(var join in Model.Pastries)
+      {
+        <h3>@Html.ActionLink($"{join.Treat.Type}", "Details", "Treats", new { id = join.Treat.TreatId} )</h3>
+        @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+        {
+          @using(Html.BeginForm("DeleteTreat", "Flavors"))
+          {
+            @Html.Hidden("joinId", @join.PastryId)
+            <input type="submit" value="Remove" class="btn btn-info">
+          }
+        }
+      }
+      <br/>
+      @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+      {
+        <h3>@Html.ActionLink("+ another Treat", "AddTreat", new { id = Model.FlavorId })</h3>
+      }
+    }
+</div>
+</div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <br/>
+      @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
+      {
+        <h3>@Html.ActionLink("Update Name", "Edit", new { id = Model.FlavorId}) | @Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</h3>
+      }
+    </div>
+    <div class="col-2"></div>
+  </div>
