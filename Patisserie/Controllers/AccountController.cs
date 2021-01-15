@@ -39,7 +39,7 @@ namespace Patisserie.Controllers
       }
       else
       {
-        ViewBag.Error = "There was an issue with your registation. Please try again.";
+        ViewBag.Error = result.Errors;
         return View();
       }
     }
