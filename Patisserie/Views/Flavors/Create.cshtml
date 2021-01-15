@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Patisserie.Models.Flavor
+
+<h2>New Flavor Form:</h2>
+<div class="container">
+  @using(Html.BeginForm())
+  {
+    <div class="form-group">
+      @Html.LabelFor(model => model.Type)
+      @Html.TextBoxFor(model => model.Type)
+    </div>
+  <input type="submit" value="+Flavor" class="btn btn-primary">
+  }
+</div>
