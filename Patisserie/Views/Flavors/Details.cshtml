@@ -48,7 +48,7 @@
       <br/>
       @if (User.Identity.IsAuthenticated && ViewBag.IsCurrentUser)
       {
-        <h3>@Html.ActionLink("Update Name", "Edit", new { id = Model.FlavorId}) | @Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</h3>
+        <h3>@Html.ActionLink("Update Flavor", "Edit", new { id = Model.FlavorId}) | @Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</h3>
       }
     </div>
     <div class="col-2"></div>

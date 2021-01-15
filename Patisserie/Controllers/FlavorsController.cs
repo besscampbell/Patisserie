@@ -29,11 +29,7 @@ namespace Patisserie.Controllers
       var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userFlavors);
     }
-    // public ActionResult Index()
-    // {
-    //   List<Flavor> flavors = _db.Flavors.ToList();
-    //   return View(flavors);
-    // }
+
     [Authorize]
      public ActionResult Create()
     {
@@ -57,5 +53,57 @@ namespace Patisserie.Controllers
       ViewBag.IsCurrentUser = userId != null? userId == thisFlavor.User.Id : false;
       return View(thisFlavor);
     }
+
+    [Authorize]
+    public async Task<ActionResult> Edit(int id)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var thisFlavor = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(flavors => flavors.FlavorId == id);
+      if(thisFlavor == null)
+      {
+        return RedirectToAction("Details", new { id = id});
+      }
+      return View(thisFlavor);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Flavor flavor)
+    {
+      _db.Entry(flavor).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [Authorize]
+    public async Task<ActionResult> AddTreat(int id)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var thisFlavor = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(flavors => flavors.FlavorId == id);
+      if(thisFlavor == null)
+      {
+        return RedirectToAction("Details", new { id = id});
+      }
+      ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Type");
+      return View(thisFlavor);
+    }
+
+    [HttpPost]
+    public ActionResult AddTreat(Flavor flavor, int TreatId)
+    {
+      if(TreatId != 0)
+      {
+        var returnedJoin = _db.Pastries
+          .Any(join => join.FlavorId == flavor.FlavorId && join.TreatId == TreatId);
+          if(!returnedJoin)
+          {
+            _db.Pastries.Add(new Pastry() { TreatId = TreatId, FlavorId = flavor.FlavorId });
+          }
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }

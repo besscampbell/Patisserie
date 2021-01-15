@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Patisserie.Models.Flavor
+
+<h2>Which treat would you like made in @Model.Type ?</h2>
+
+@using(Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.FlavorId)
+  @Html.HiddenFor(model => model.Type)
+
+  @Html.Label("Type")
+  @Html.DropDownList("TreatId")
+
+  <input type="submit" value="Save" class="btn btn-success">
+}
+<br/>
+<h3>@Html.ActionLink($"Return to {Model.Type}'s info page", "Details", new { id = Model.FlavorId})</h3>
+<h3>@Html.ActionLink("+ new Treat", "Create", "Treats")</h3>
