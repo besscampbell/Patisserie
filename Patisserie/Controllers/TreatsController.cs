@@ -29,5 +29,29 @@ namespace Patisserie.Controllers
       var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userTreats);
     }
+
+    [Authorize]
+     public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Create(Treat treat)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      treat.User = currentUser;
+      _db.Treats.Add(treat);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    public ActionResult Details(int id)
+    {
+      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ViewBag.IsCurrentUser = userId != null? userId == thisTreat.User.Id : false;
+      return View(thisTreat);
+    }
   }
 }
