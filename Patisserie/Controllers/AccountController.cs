@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Patisserie.Controllers
 {
-  public class AccountController : Controllers
+  public class AccountController : Controller
   {
     private readonly PatisserieContext _db;
     private readonly UserManager<ApplicationUser> _userManager;

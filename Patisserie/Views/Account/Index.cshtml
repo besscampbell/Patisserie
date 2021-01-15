@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@using System.Security.Claims
+
+@if(User.Identity.IsAuthenticated)
+{
+  <h3>Welcome to Pierre's Patisserie @User.Identity.Name! Thank you for signing in. You can now create your own Pastries. Make treats sweet or savory. What ever you like!</h3>
+  <br/>
+  @using(Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" class="btn btn-info" value="Log out">
+  }
+}
+else
+{
+  <h4>@Html.ActionLink("Register", "Register") | @Html.ActionLink("Log in", "Login") | @Html.ActionLink("Home", "Index", "Home")</h4>
+}
