@@ -32,26 +32,33 @@ namespace Patisserie.Controllers
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
-      try
+      if(model.Password != model.ConfirmPassword)
       {
-        var user = new ApplicationUser { UserName = model.Email };
-        IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-        if(result.Succeeded)
-        {
-          return RedirectToAction("Index");
-        }
-        else
-        {
-          ViewBag.Error = result;
-          return View();
-        }
-      }
-      catch(Exception result)
-      {
-        ViewBag.Error = result.Message;
+        ViewBag.Error = "Confirm that your passwords match";
         return View();
       }
-      
+      else
+      {
+        try
+        {
+          var user = new ApplicationUser { UserName = model.Email };
+          IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+          if(result.Succeeded)
+          {
+            return RedirectToAction("Index");
+          }
+          else
+          {
+            ViewBag.Error = result;
+            return View();
+          }
+        }
+        catch(Exception result)
+        {
+          ViewBag.Error = result.Message;
+          return View();
+        }  
+      }  
     }
 
     public ActionResult Login()
