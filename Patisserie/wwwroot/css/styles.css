@@ -1,3 +1,7 @@
 body {
   text-align: center;
+  background-image: url(../img/macaron.jpg);
+  background-size: cover;
+  color: rgb(241, 193, 201);
 }
+

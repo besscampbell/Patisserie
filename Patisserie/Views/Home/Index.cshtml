@@ -5,6 +5,9 @@
 @using Patisserie.Models
 
 <div class="row pt-5">
+  <h2>Pierre's Patisserie</h2>
+  <h3>@Html.ActionLink("Sign In", "Account") or @Html.ActionLink("Register", "Account") to start buiding your own pastries!</h3>
+  <hr/>
   <div class="container col-6">
     @if (ViewBag.Treats.Count == 0)
     {
