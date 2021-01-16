@@ -44,7 +44,7 @@ namespace Patisserie.Controllers
       flavor.User = currentUser;
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
     public ActionResult Details(int id)
     {
@@ -72,7 +72,7 @@ namespace Patisserie.Controllers
     {
       _db.Entry(flavor).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Detais", new { id = flavor.FlavorId});
     }
 
     [Authorize]

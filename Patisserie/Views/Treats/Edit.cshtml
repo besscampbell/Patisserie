@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Patisserie.Models.Treat
+
+<h2>Update Treat Info:</h2>
+<div class="container">
+  @using(Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.TreatId)
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.Type)
+      @Html.TextBoxFor(model => model.Type)
+    </div>
+  <input type="submit" value="Save" class="btn btn-primary">
+  }
+</div>
+<br/>
+<h3>@Html.ActionLink($"Return to {Model.Type}'s info page", "Details", new { id = Model.TreatId})</h3>

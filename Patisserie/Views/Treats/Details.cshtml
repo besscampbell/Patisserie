@@ -21,7 +21,7 @@
     }
     else
     {
-      <h2>Flavors in this treat:</h2>
+      <h2>This treat can be made in these flavors:</h2>
       @foreach(var join in Model.Pastries)
       {
         <h3>@Html.ActionLink($"{join.Flavor.Type}", "Details", "Flavors", new { id = join.Flavor.FlavorId} )</h3>
