@@ -104,5 +104,37 @@ namespace Patisserie.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = treat.TreatId});
     }
+
+    [Authorize]
+    public async Task<ActionResult> Delete(int id)
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treats => treats.TreatId == id);
+      if(thisTreat == null)
+      {
+        return RedirectToAction("Details", new { id = id});
+      }
+      return View(thisTreat);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
+      _db.Treats.Remove(thisTreat);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteFlavor(int joinId)
+    {
+      var joinEntry = _db.Pastries.FirstOrDefault(entry => entry.PastryId == joinId);
+      _db.Pastries.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
+ 
