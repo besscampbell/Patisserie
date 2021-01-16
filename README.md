@@ -1,6 +1,6 @@
 # Pierre's Patisserie
 
-#### Friday Project for Epicodus using a Many-to-Many and User Authentication , 1.15.2020
+#### Friday Project for Epicodus using a Many-to-Many and User Authentication, 1.15.2020
 
 #### By Bess Campbell 
 
@@ -11,6 +11,24 @@ Pierre is back! He wants you to create a new application to market his sweet and
 The application should have user authentication. A user should be able to log in and log out. Only logged in users should have create, update and delete functionality. All users should be able to have read functionality.
 There should be a many-to-many relationship between Treats and Flavors. A treat can have many flavors (such as sweet, savory, spicy, or creamy) and a flavor can have many treats. For instance, the "sweet" flavor could include chocolate croissants, cheesecake, and so on.
 A user should be able to navigate to a splash page that lists all treats and flavors. Users should be able to click on an individual treat or flavor to see all the treats/flavors that belong to it.
+
+## Objectives
+
+ The code will be reviewed for the following objectives:
+
+ * Does at least one of your classes have all CRUD methods implemented in your app?
+ * Are you able to view both sides of the many-many relationship? For a particular instance of a class, are you able to view all of the instances of the other class that are related to it?
+ * Are users able to register, log in and log out with Identity?
+ * Is Create, Update and Delete functionality limited to authenticated users?
+ * Is the project in a polished, portfolio-quality state?
+ * Was required functionality in place by the deadline?
+ * Does the project demonstrate all of this week's concepts? If prompted, are you able to discuss your code with an instructor using correct terminology?
+
+## Further Exploration
+
+ * Have separate roles for admins and logged-in users. Only admins should be able to add, update and delete.
+ * Add an order form that only logged-in users can access. A logged-in user should be able to create, read, update and delete their own order.
+
 
 ## Preview
 
@@ -65,13 +83,6 @@ A user should be able to navigate to a splash page that lists all treats and fla
 * Ensure the option `Dump Structure and Data` is selected (located near the bottom).
 * Click `Start Import`
 
-#### Import Database with SQL Schema
-* Open MySql Workbench and paste the following Schema Create Statement into a new SQL tab for executing queries.
-
-```
-
-
-```
 #### SQL Database Design
 
 ![MySQL Designer]()
