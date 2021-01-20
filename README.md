@@ -103,7 +103,7 @@ _This application required use of the following programs/languages/libraries to 
 * _MySQL_
 * _MySQL Workbench_
 * _Entity Framework Core_
-* _[SQL Designer](https://ondras.zarovi.cz/sql/demo/)_
+* _Identity_
 
 ## Known Bugs
 
