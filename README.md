@@ -1,6 +1,6 @@
 # Pierre's Patisserie
 
-#### Friday Project for Epicodus using a Many-to-Many and User Authentication, 1.15.2020
+#### Friday Project for Epicodus using a Many-to-Many and User Authentication, 1.15.2021
 
 #### By Bess Campbell 
 
