@@ -72,7 +72,7 @@ namespace Patisserie.Controllers
     {
       _db.Entry(flavor).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Detais", new { id = flavor.FlavorId});
+      return RedirectToAction("Details", new { id = flavor.FlavorId});
     }
 
     [Authorize]

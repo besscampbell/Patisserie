@@ -32,7 +32,7 @@ A user should be able to navigate to a splash page that lists all treats and fla
 
 ## Preview
 
-![Splash Page]()
+![Splash Page](./ReadMeAssets/patisserie_splash.png)
 
 ## Prerequisites
 
@@ -82,10 +82,6 @@ A user should be able to navigate to a splash page that lists all treats and fla
 * Select Schema Objects you wish to import.
 * Ensure the option `Dump Structure and Data` is selected (located near the bottom).
 * Click `Start Import`
-
-#### SQL Database Design
-
-![MySQL Designer]()
 
 
 ## Technologies Used
